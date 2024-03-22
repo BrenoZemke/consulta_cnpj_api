@@ -1,14 +1,34 @@
-- Campos de Entrada:
+#Requisitos
+Antes de começar a executar o projeto, verifique se você tem os seguintes requisitos instalados em sua máquina:
 
-* CNPJ (Obrigatório): Campo para inserir o CNPJ da empresa a ser consultada ou cadastrada.
-* Número de Funcionários: Campo para inserir o número de funcionários da empresa (opcional).
-* Faturamento Anual Estimado: Campo para inserir o faturamento anual estimado da empresa (opcional).
-* Vendedor Responsável: Campo para inserir o nome do vendedor responsável pela empresa (opcional).
+Python 3.x
 
-- Botões:
+#Instalação
+Para instalar as dependências necessárias para o projeto, execute o seguinte comando no terminal:
 
-* Consultar CNPJ: Realiza uma consulta à Receita Federal utilizando o CNPJ inserido no campo correspondente. Os campos de informações da empresa são preenchidos com os dados retornados pela consulta.
-* Cadastrar Empresa: Cadastra uma nova empresa no banco de dados. Requer que o CNPJ seja consultado previamente e que todos os campos obrigatórios, além dos opcionais, estejam preenchidos.
-* Atualizar Informações: Atualiza as informações da empresa no banco de dados. Requer que o CNPJ seja consultado previamente e que pelo menos um dos campos opcionais seja preenchido.
-* Consultar Clientes: Abre uma nova janela exibindo uma lista de clientes cadastrados no banco de dados. Pode opcionalmente filtrar os resultados pelo nome do vendedor responsável.
-# consulta_cnpj
+pip install -r requirements.txt
+
+Este comando instalará todas as bibliotecas Python necessárias para o projeto.
+
+#Configuração do Banco de Dados
+O projeto utiliza um banco de dados SQLite. Para configurar o banco de dados com as tabelas necessárias, execute o seguinte comando no terminal:
+
+python database.py
+
+Este comando criará o arquivo de banco de dados database.db e configurará as tabelas necessárias conforme especificado no arquivo schema.sql.
+
+#Utilização
+Para iniciar o servidor Flask e executar o projeto, utilize o seguinte comando no terminal:
+
+python manager.py
+
+Após executar este comando, a API REST será ativada e estará pronta para receber solicitações. O servidor será iniciado em http://127.0.0.1:8080/ por padrão.
+
+#Endpoints
+O projeto disponibiliza os seguintes endpoints:
+
+GET /cnpj: Lista informações sobre empresas. Parâmetros opcionais: vendedor_responsavel para filtrar por vendedor.
+POST /cnpj: Cria uma nova entrada de empresa. Requer um payload JSON com o campo cnpj.
+PUT /cnpj/<id>: Atualiza informações de uma empresa. Requer um payload JSON com os campos numero_funcionarios, faturamento_anual_estimado e vendedor_responsavel.
+
+Certifique-se de usar os métodos HTTP corretos ao acessar os endpoints.
